@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { AudioService } from './AudioService';
 import './App.css';
 import tracks from './tracks';
+import Controls from './Controls';
 
 function App() {
   
@@ -14,8 +15,9 @@ function App() {
   const { title, artist, audioSource } = tracks[trackIndex]
 
   //Reference for creating the audio element
-  //const audioRef = useRef(new Audio(audioSource))
-  const audioEmbedded = () => <audio controls src={audioSource}></audio>
+  const audioRef = useRef(new Audio(audioSource))
+  const audioEmbedded = () => <audio controls src={audioRef.current.src}></audio>
+  
   return (
     <div className='player'>
       <div className='trackInfo'>
@@ -25,6 +27,7 @@ function App() {
       <div>
         {audioEmbedded()}
       </div>
+      <Controls />
     </div>
   );
 }
