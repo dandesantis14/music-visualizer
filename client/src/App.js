@@ -1,7 +1,9 @@
-import logo from './logo.svg';
+import React, { useState, useRef, useEffect } from 'react';
+import { AudioService } from './AudioService';
 import './App.css';
 
-function App() {
+function App( {tracks} ) {
+  
   return (
     <div className="App">
       <header className="App-header">
