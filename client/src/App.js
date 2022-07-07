@@ -1,25 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AudioService } from './AudioService';
 import './App.css';
+import tracks from './tracks';
 
-function App( {tracks} ) {
+function App() {
   
+  //Track song index
+  const [trackIndex, setTrackIndex] = useState(0)
+  //Track first play to address autoplay policies
+  const [firstPlay, setFirstPlay] = useState(true)
+  
+  //Destructure for track information
+  const { title, artist, audioSource } = tracks[trackIndex]
+
+  //Reference for creating the audio element
+  //const audioRef = useRef(new Audio(audioSource))
+  const audioEmbedded = () => <audio controls src={audioSource}></audio>
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='player'>
+      <div className='trackInfo'>
+          <h3 className='trackTitle'>{title}</h3>
+          <h4 className='trackArtist'>{artist}</h4>
+      </div>
+      <div>
+        {audioEmbedded()}
+      </div>
     </div>
   );
 }
