@@ -3,6 +3,9 @@ import { AudioService } from './AudioService';
 import './App.css';
 import tracks from './tracks';
 import Controls from './Controls';
+import Visualizer from './Visualizer';
+import { DrawingService } from './DrawingService';
+
 
 function App() {
   
@@ -17,30 +20,53 @@ function App() {
   //Reference to check for track load
   const isReady = useRef(false)
 
+  //Reference to hold audioContext
+  const audioContextRef = useRef()
+
   //Functions for track changing
   const onNextClick = () => {
     if (trackIndex < tracks.length - 1){
       setTrackIndex(trackIndex+1)
+      setAudioSource()
     } else {
       setTrackIndex(0)
+      setAudioSource()
     }
   }
   const onPrevClick = () => {
     if (trackIndex - 1 < 0){
       setTrackIndex(tracks.length - 1)
+      setAudioSource()
     } else {
       setTrackIndex(trackIndex+1)
+      setAudioSource()
     }
   }
-
-  //? Need to listen for play and pause!
-  //? ^^ to create audioContext necessary to analyze
-  const initializeAudioContext = () => {
-    const audioService = new AudioService();
-    audioService.createSource(document.querySelector(".audio-element"));
-    setHasInteracted(true);
+  // Initializes audio context and/or sets audio source node.
+  const setAudioSource = () => {
+    if(!hasInteracted){
+      audioContextRef.current = new AudioService();
+      setHasInteracted(true);
+    }
+      audioContextRef.current.createSource(document.querySelector(".audio-element"));
+  }
+  // Initialize drawing
+  const startDraw = () => {
+    const drawService = new DrawingService();
+    drawService.drawHouse()
   }
 
+  //Retrieve track information for canvas to draw with
+  const getFrequencyData = () => {
+    return audioContextRef.current.getTrackData()
+  }
+
+  const onPlayClick = () => {
+    setAudioSource()
+    startDraw()
+
+  }
+  
   return (
     <div className='player'>
       <div className='trackInfo'>
@@ -48,13 +74,22 @@ function App() {
           <h4 className='trackArtist'>{artist}</h4>
       </div>
       <div>
-        {hasInteracted ? <></> : <button type='button' onClick={()=>initializeAudioContext()}> ARE YOU SURE?!?!</button>}
-        <audio controls src={audioSource} className='audio-element' hidden={!hasInteracted}></audio>
+        <audio
+          controls
+          src={audioSource}
+          className='audio-element'
+          onPlay={()=>onPlayClick()}
+        ></audio>
       </div>
       <Controls 
         onNextClick = {onNextClick}
         onPrevClick = {onPrevClick}
       />
+      <canvas
+        id='visualizer-canvas'
+        height='300'
+        width='300'
+      ></canvas>
     </div>
   );
 }
