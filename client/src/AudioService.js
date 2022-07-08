@@ -6,8 +6,8 @@ export class AudioService {
 
     createSource(audioElement) {
         const sourceElement = this.audioContext.createMediaElementSource(audioElement);
-        // const analyser = this.audioContext.createAnalyser();
-        // sourceElement.connect(analyser);
+        const analyser = this.audioContext.createAnalyser();
+        sourceElement.connect(analyser);
         sourceElement.connect(this.audioContext.destination);
     }
 }
