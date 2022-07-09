@@ -3,6 +3,7 @@ export class AudioService {
         this.AudioContext = window.AudioContext || window.webkitAudioContext;
         this.audioContext = new AudioContext();
         this.analyserNode = this.audioContext.createAnalyser();
+        this.analyserNode.fftSize = 256;
     }
 
     createSource(audioElement) {
@@ -15,6 +16,6 @@ export class AudioService {
         const bufferLength = this.analyserNode.frequencyBinCount
         const dataArray = new Uint8Array(bufferLength)
         this.analyserNode.getByteTimeDomainData(dataArray)
-        return(dataArray)
+        return[dataArray,bufferLength]
     }
 }

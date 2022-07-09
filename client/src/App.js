@@ -53,17 +53,18 @@ function App() {
   // Initialize drawing
   const startDraw = () => {
     const drawService = new DrawingService();
-    drawService.drawHouse()
+    drawService.clearCanvas()
+    drawService.draw(audioContextRef.current)
   }
 
   //Retrieve track information for canvas to draw with
-  const getFrequencyData = () => {
+  const getTrackData = () => {
     return audioContextRef.current.getTrackData()
   }
 
   const onPlayClick = () => {
     setAudioSource()
-    startDraw()
+    startDraw(getTrackData())
 
   }
   
@@ -87,8 +88,8 @@ function App() {
       />
       <canvas
         id='visualizer-canvas'
+        width='600'
         height='300'
-        width='300'
       ></canvas>
     </div>
   );

@@ -1,21 +1,29 @@
 export class DrawingService {
-    constructor () {
+    constructor() {
         this.canvas = document.getElementById('visualizer-canvas')
         this.context = this.canvas.getContext('2d')
     }
+    
+    clearCanvas() {
+        this.context.clearRect(0, 0, 600, 300)
+    }
 
-    drawHouse () {
-        this.context.lineWidth = 10;
-        // Wall
-        this.context.strokeRect(75, 140, 150, 110);
-        // Door
-        this.context.fillRect(130, 190, 40, 60);
-        // Roof
-        this.context.beginPath();
-        this.context.moveTo(50, 140);
-        this.context.lineTo(150, 60);
-        this.context.lineTo(250, 140);
-        this.context.closePath();
-        this.context.stroke();
+    draw(audioContext) {
+        const [dataArray, bufferLength] = audioContext.getTrackData()
+        const drawVisual = requestAnimationFrame(() => this.draw(audioContext));
+
+        this.context.fillStyle = 'rgb(0,0,0)';
+        this.context.fillRect(0, 0, 600, 300);
+        const barWidth = (600 / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+
+            barHeight = dataArray[i] / 2;
+            this.context.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)'
+            this.context.fillRect(x, 300 - barHeight / 2, barWidth, barHeight)
+            x += barWidth + 1
+        }
     }
 }
