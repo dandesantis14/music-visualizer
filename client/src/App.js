@@ -11,14 +11,17 @@ function App() {
   
   //Track song index
   const [trackIndex, setTrackIndex] = useState(0)
-  //Track first play to address autoplay policies
+  //Track first interaction to address autoplay policies as they apply to creation of audio context
   const [hasInteracted, setHasInteracted] = useState(false)
-  
+  //Track creation of audio source node to allow for track changes
+  const [hasSource, setHasSource] = useState(false)
+
+
   //Destructure for track information
   const { title, artist, audioSource } = tracks[trackIndex]
   
   //Reference to check for track load
-  const isReady = useRef(false)
+  //const isReady = useRef(false)
 
   //Reference to hold audioContext
   const audioContextRef = useRef()
@@ -42,14 +45,19 @@ function App() {
       setAudioSource()
     }
   }
+
   // Initializes audio context and/or sets audio source node.
   const setAudioSource = () => {
     if(!hasInteracted){
       audioContextRef.current = new AudioService();
       setHasInteracted(true);
     }
+    if(!hasSource){
       audioContextRef.current.createSource(document.querySelector(".audio-element"));
+      setHasSource(true)
+    }
   }
+
   // Initialize drawing
   const startDraw = () => {
     const drawService = new DrawingService();
@@ -57,11 +65,12 @@ function App() {
     drawService.draw(audioContextRef.current)
   }
 
-  //Retrieve track information for canvas to draw with
+  //Retrieves track information
   const getTrackData = () => {
     return audioContextRef.current.getTrackData()
   }
 
+  //Set source, retrieve and pass track information into drawing class
   const onPlayClick = () => {
     setAudioSource()
     startDraw(getTrackData())

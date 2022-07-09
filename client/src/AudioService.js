@@ -7,9 +7,9 @@ export class AudioService {
     }
 
     createSource(audioElement) {
-        const sourceElement = this.audioContext.createMediaElementSource(audioElement);
-        sourceElement.connect(this.analyserNode);
-        sourceElement.connect(this.audioContext.destination);
+        const sourceNode = this.audioContext.createMediaElementSource(audioElement);
+        sourceNode.connect(this.analyserNode);
+        sourceNode.connect(this.audioContext.destination);
     }
 
     getTrackData() {
@@ -18,4 +18,5 @@ export class AudioService {
         this.analyserNode.getByteTimeDomainData(dataArray)
         return[dataArray,bufferLength]
     }
+    
 }
