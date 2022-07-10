@@ -4,13 +4,14 @@ import './App.css';
 import tracks from './tracks';
 import Controls from './Controls';
 import Visualizer from './Visualizer';
+import Track from './Track';
 import { DrawingService } from './DrawingService';
 
 
 function App() {
   
   //Track song index
-  const [trackIndex, setTrackIndex] = useState(0)
+  const [trackId, setTrackId] = useState(1)
   //Track first interaction to address autoplay policies as they apply to creation of audio context
   const [hasInteracted, setHasInteracted] = useState(false)
   //Track creation of audio source node to allow for track changes
@@ -18,7 +19,7 @@ function App() {
 
 
   //Destructure for track information
-  const { title, artist, audioSource } = tracks[trackIndex]
+  const { title, artist, audioSource } = tracks[trackId-1]
   
   //Reference to check for track load
   //const isReady = useRef(false)
@@ -28,20 +29,20 @@ function App() {
 
   //Functions for track changing
   const onNextClick = () => {
-    if (trackIndex < tracks.length - 1){
-      setTrackIndex(trackIndex+1)
+    if (trackId < tracks.length){
+      setTrackId(trackId+1)
       setAudioSource()
     } else {
-      setTrackIndex(0)
+      setTrackId(1)
       setAudioSource()
     }
   }
   const onPrevClick = () => {
-    if (trackIndex - 1 < 0){
-      setTrackIndex(tracks.length - 1)
+    if (trackId - 1 == 0){
+      setTrackId(tracks.length)
       setAudioSource()
     } else {
-      setTrackIndex(trackIndex+1)
+      setTrackId(trackId-1)
       setAudioSource()
     }
   }
@@ -76,6 +77,24 @@ function App() {
     startDraw(getTrackData())
 
   }
+
+  //Function to handle direct track selection
+  const onTrackSelect = (event) => {
+    setTrackId(event.target.id)
+  }
+
+  //build tracklist to display
+  const trackListDisplay = tracks.map(track => {
+    return (
+      <Track 
+        key = {track.id}
+        id = {track.id}
+        title = {track.title}
+        artist = {track.artist}
+        onTrackSelect = {onTrackSelect}
+      />
+    )
+  })
   
   return (
     <div className='player'>
@@ -95,6 +114,7 @@ function App() {
         onNextClick = {onNextClick}
         onPrevClick = {onPrevClick}
       />
+      <div className='trackList'>{trackListDisplay}</div>
       <canvas
         id='visualizer-canvas'
         width='600'

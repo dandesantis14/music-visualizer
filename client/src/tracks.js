@@ -4,16 +4,19 @@ import testTrack3 from "./assets/testAudioFileCopy2.m4a"
 
 export default [
     {
+        id: 1,
         title: "Test Track",
         artist: "Dan",
         audioSource: testTrack,
     },
     {
+        id: 2,
         title: "Test Track 2",
         artist: "Mad",
         audioSource: testTrack2,
     },
     {
+        id: 3,
         title: "Test Track 3",
         artist: "Ollie",
         audioSource: testTrack3,
