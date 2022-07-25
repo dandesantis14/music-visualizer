@@ -65,7 +65,7 @@ html, body, div#root{
   border-radius: 7px;
   margin: 2px 5px 2px 5px;
   padding-left: 10px;
-  overflow:hidden unset;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   background-color: #E9D5DA;
