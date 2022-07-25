@@ -37,6 +37,11 @@ function SongSubmitForm ({ trackList, setTrackList, formVisibility, handleFormOp
                 resp.json().then((resp)=> {
                     setTrackList([...trackList,resp])
                     handleFormOpenClose(e)
+                    setSongSubmitData({
+                        title: "",
+                        artist: "",
+                        file: null,
+                    })
                 });
             } else {
                 resp.json().then((errors) => {
