@@ -14,7 +14,7 @@ export class DrawingService {
 
         this.context.fillStyle = 'rgb(54, 48, 98)';
         this.context.fillRect(0, 0, 600, 370);
-        const barWidth = (600 / bufferLength) * 1.5;
+        const barWidth = (600 / bufferLength) * 2.5;
         let barHeight;
         let x = 0;
 

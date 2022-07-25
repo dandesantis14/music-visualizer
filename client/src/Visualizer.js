@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { AudioService } from './AudioService';
 import './App.css';
 import Controls from './Controls';
@@ -138,7 +138,7 @@ function Visualizer({ user, setUser, trackList, setTrackList, onLogoutClick }) {
                             <audio
                                 controls
                                 crossOrigin='use-credentials'
-                                src={`http://localhost:3000/audio/${id}`}
+                                src={`/audio/${id}`}
                                 className='audio-element'
                                 onPlay={() => onPlayClick()}
                             ></audio>
