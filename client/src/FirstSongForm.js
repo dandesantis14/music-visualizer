@@ -69,7 +69,7 @@ function FirstSongForm({ setTrackList, onLogoutClick }) {
                     onChange={(e) => handleChange(e)}
                 />
                 <button type='submit'>Submit</button>
-                <button onClick={onLogoutClick}>LogOut</button>
+                <button onClick={onLogoutClick}>Logout</button>
             </form>
         </div>
     )
