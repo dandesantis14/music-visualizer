@@ -36,6 +36,7 @@ function SongSubmitForm ({ trackList, setTrackList, formVisibility, handleFormOp
             if (resp.ok){
                 resp.json().then((resp)=> {
                     setTrackList([...trackList,resp])
+                    handleFormOpenClose(e)
                 });
             } else {
                 resp.json().then((errors) => {

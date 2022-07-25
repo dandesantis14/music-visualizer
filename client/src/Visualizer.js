@@ -30,8 +30,6 @@ function Visualizer({ user, setUser, trackList, setTrackList, onLogoutClick }) {
 
     //Track creation of audio source node to allow for track changes
     const [hasSource, setHasSource] = useState(false)
-
-    
     
     //Reference to hold audioContext
     const audioContextRef = useRef()
@@ -85,10 +83,6 @@ function Visualizer({ user, setUser, trackList, setTrackList, onLogoutClick }) {
         setAudioSource()
         startDraw(getTrackData())
     }
-    const onPauseClick = () => {
-        const drawService = new DrawingService();
-        drawService.clearCanvas()
-    }
     
     //Function to handle direct track selection
     const onTrackSelect = (event) => {
@@ -96,7 +90,6 @@ function Visualizer({ user, setUser, trackList, setTrackList, onLogoutClick }) {
             return track.id === parseInt(event.target.id)
         }))
     }
-    
     
     if (trackList.length<1) {
         return (
@@ -148,7 +141,6 @@ function Visualizer({ user, setUser, trackList, setTrackList, onLogoutClick }) {
                                 src={`http://localhost:3000/audio/${id}`}
                                 className='audio-element'
                                 onPlay={() => onPlayClick()}
-                                onPause={() => onPauseClick()}
                             ></audio>
                             <Controls onNextClick={onNextClick} onPrevClick={onPrevClick} />
                         </div>
