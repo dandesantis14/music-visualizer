@@ -28,11 +28,218 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html, body, div#root{
+  height: 100%;
+  margin:0;
+  background: #827397;
+}
+.container{
+  height: 100%;
+  background: #827397;
+}
+.visualizer-container{
+  background: #827397;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.track-panel{
+  display:flex;
+  flex-direction: column;
+  margin: 10px 0px 10px 10px;
+  width: 350px;
+}
+.track-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #827397;
+  height: 100%;
+  width: 350px;
+  overflow: auto;
+}
+.track-element{
+  border: solid;
+  border-width: 2px;
+  border-radius: 7px;
+  margin: 2px;
+  padding-left: 10px;
+  overflow:hidden unset;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: lightgrey;
+}
+.track-element:hover{
+  background-color: grey;
+}
+.new-track{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #827397;
+  height: 30px;
+}
+.new-track-button{
+  height:100%;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.song-submit-container{
+  background: #4D4C7D;
+  width: 360px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.submit-button-container{
+  display: flex;
+  justify-content: space-around;
+}
+#song-submit-container-visible{
+  position: absolute;
+  bottom: 0px;
+  left: 0px
+}
+#song-submit-container-hidden{
+  position:absolute;
+  display:none;
+  bottom: -160px;
+  left: 0px
+}
+.song-submit-form{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px 10px 10px
+}
+.song-submit-form>input{
+  margin:10px;
+}
+.display-panel{
+  background-color: #827397;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px 10px 10px 0px;
+}
+.canvas-container{
+  background-color: #E9D5DA;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center ;
+}
+canvas#visualizer-canvas{
+  width: 100%;
+}
+.control-panel{
+  background-color: #827397;
+  height: 25%;
+  width: 100%;
+  display:flex;
+}
+.logout{
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100px;
+  background-color: #827397;
+}
+.logout-button{
+  margin: 10px
+}
+.control-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.track-display{
+  display: flex;
+  justify-content: center;
+}
+.track-info{
+  margin: 10px;
+}
+#current-title-display{
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+}
+#current-artist-display{
+  font-size: large;
+  text-align: center;
+}
+.audio-player{
+  display: flex;
+  justify-content: center;
+}
+.navigate-tracks{
+  display: flex;
+  justify-content: center;
+}
+.nav-button{
+  margin: 5px;
+  border: none;
+}
+.nav-button:hover{
+  background-color: lightgrey
+}
+.nav-button#next-track{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.nav-button#prev-track{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+/* SIGN-IN/UP FORM STYLES */
+.sign-in-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+  
+}
+.sign-in-form{
+  width: 380px;
+  padding: 40px 30px 50px 30px;
+  background: #E9D5DA;
+  border: 3px solid #4D4C7D;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 10px 10px #363062;
+}
+.sign-up-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+.sign-up-form{
+  width: 380px;
+  padding: 40px 30px 50px 30px;
+  background: #fff;
+  border: 3px solid black;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 10px 10px grey;
+}
+.first-song-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+.first-song-form{
+  width: 380px;
+  padding: 40px 30px 50px 30px;
+  background: #fff;
+  border: 3px solid black;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 10px 10px grey;
+}
+.first-song-form>input{
+  margin: 10px;
 }

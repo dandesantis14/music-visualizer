@@ -5,17 +5,19 @@ import {ReactComponent as Prev } from './assets/prev.svg';
 
 const Controls = ( { onPrevClick, onNextClick } ) => {
     return(
-        <div className='audio-controls'>
+        <div className='navigate-tracks'>
             <button
                 type='button'
-                className='prev'
+                className='nav-button'
+                id="prev-track"
                 onClick={onPrevClick}
             >
                 <Prev />
             </button>
             <button
                 type='button'
-                className='next'
+                className='nav-button'
+                id="next-track"
                 onClick={onNextClick}
             >
                 <Next />
