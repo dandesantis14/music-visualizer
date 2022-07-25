@@ -51,6 +51,7 @@ function FirstSongForm({ setTrackList, onLogoutClick }) {
                 <input
                     type="text"
                     id="title"
+                    required="true"
                     placeholder="Song Title"
                     value={songSubmitData.title}
                     onChange={(e) => handleChange(e)}
@@ -58,6 +59,7 @@ function FirstSongForm({ setTrackList, onLogoutClick }) {
                 <input
                     type="text"
                     id="artist"
+                    required="true"
                     placeholder="Song Artist"
                     value={songSubmitData.artist}
                     onChange={(e) => handleChange(e)}
@@ -65,6 +67,7 @@ function FirstSongForm({ setTrackList, onLogoutClick }) {
                 <input
                     type="file"
                     id="file"
+                    required="true"
                     accept=".mp3, .mp4, .m4a"
                     onChange={(e) => handleChange(e)}
                 />
